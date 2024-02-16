@@ -1,27 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include "include/Node.h"
+#include "include/Graph.h"
 
 using namespace std;
 
 int main() {
-    vector<Node *> v;
-    map<Coord, Node> nodeMap;
+    Graph g;
 
-    for(auto i = 0; i < 100; i++) {
-        Coord p {i, 0};
-        Node n = Node(p);
-        nodeMap[p] = n;
-        v.push_back(&n);
-    }
+    for (int i = 0; i < 20; i++)
+        for (int j = 0; j < 20; j++)
+            g.addNode(i, j);
 
-    long s = nodeMap.size();
-    cout << s;
-
-    for (auto x: v) {
-
-    }
+    cout << g.size();
 
 
     return 0;

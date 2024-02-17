@@ -4,6 +4,8 @@
 
 #include "../include/Node.h"
 
+using namespace std;
+
 Node::Node() = default;
 
 Node::Node(Coord p) : nodeCoord(p) {
@@ -12,8 +14,8 @@ Node::Node(Coord p) : nodeCoord(p) {
 Node::Node(int x, int y) : nodeCoord(Coord {x, y}) {
 }
 
-void Node::addOutgoingEdge(Edge e) {
-    edges.push_back(e);
+void Node::addOutEdge(Edge e) {
+    outEdges.push_back(e);
 }
 
 bool operator<(Coord a, Coord b) {
@@ -23,3 +25,5 @@ bool operator<(Coord a, Coord b) {
         return false;
     return a.y < b.y;
 }
+
+

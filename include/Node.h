@@ -6,6 +6,7 @@
 #define CPP_PLANNER_NODE_H
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -23,12 +24,12 @@ struct Edge {
 
 class Node {
     Coord nodeCoord;
-    std::vector<Edge> edges {};
+    std::vector<Edge> outEdges {};
 public:
     explicit Node();
     explicit Node(Coord p);
     explicit Node(int x, int y);
-    void addOutgoingEdge(Edge e);
+    void addOutEdge(Edge e);
 };
 
 

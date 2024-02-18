@@ -35,13 +35,5 @@ protected:
    map<Coord, Node> nodeMap;
 };
 
-string NodeErrorMsg(Coord p);
-
-
-struct GraphException : exception {
-    string msg;
-    explicit GraphException(const string& msg);
-    const char* what() const noexcept;
-};
 
 #endif //CPP_PLANNER_DIRECTEDGRAPH_H

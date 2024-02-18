@@ -22,10 +22,6 @@ size_t DirectedGraph::size() {
     return nodeMap.size();
 }
 
-string NodeErrorMsg(Coord p) {
-    return "Trying to add edge connecting node " + p.to_string() + ", which does not exist";
-}
-
 
 void DirectedGraph::addEdge(Coord p1, Coord p2, double cost) {
     if (!hasNode(p1))
@@ -84,8 +80,3 @@ _Rb_tree_const_iterator<pair<const Coord, Node>> DirectedGraph::end() const {
 }
 
 
-GraphException::GraphException(const string &msg) : msg(msg) {}
-
-const char *GraphException::what() const noexcept {
-    return msg.c_str();
-}

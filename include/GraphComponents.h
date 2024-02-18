@@ -5,6 +5,7 @@
 #ifndef CPP_PLANNER_GRAPHCOMPONENTS_H
 #define CPP_PLANNER_GRAPHCOMPONENTS_H
 
+#include <map>
 #include <iostream>
 #include <set>
 #include <string>
@@ -27,6 +28,8 @@ struct Edge {
 
 bool operator<(Edge a, Edge b);
 
+string NodeErrorMsg(Coord p);
+
 class Node {
     Coord nodeCoord;
     std::set<Edge> outEdges {};
@@ -39,5 +42,10 @@ public:
 };
 
 
+struct GraphException : exception {
+    string msg;
+    explicit GraphException(const string& msg);
+    const char* what() const noexcept;
+};
 
 #endif //CPP_PLANNER_GRAPHCOMPONENTS_H

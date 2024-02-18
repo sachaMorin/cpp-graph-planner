@@ -1,8 +1,8 @@
 //
 // Created by sacha on 15/02/24.
 //
+#include "../include/DirectedGraph.h"
 #include <string>
-#include "../include/GraphComponents.h"
 
 using namespace std;
 
@@ -41,4 +41,14 @@ ostream &Coord::operator<<(ostream &out) const {
 
 string Coord::to_string() const {
     return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
+}
+
+string NodeErrorMsg(Coord p) {
+    return "Trying to add edge connecting node " + p.to_string() + ", which does not exist";
+}
+
+GraphException::GraphException(const string &msg) : msg(msg) {}
+
+const char *GraphException::what() const noexcept {
+    return msg.c_str();
 }

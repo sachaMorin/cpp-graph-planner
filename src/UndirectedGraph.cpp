@@ -14,5 +14,5 @@ void UndirectedGraph::addEdge(Coord p1, Coord p2, double cost) {
 }
 
 size_t UndirectedGraph::nEdges() const {
-    return DirectedGraph::nEdges()/2;
+    return DirectedGraph::nEdges() / 2;
 }

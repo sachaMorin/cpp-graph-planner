@@ -6,20 +6,12 @@
 
 using namespace std;
 
-Node::Node() = default;
-
-Node::Node(Coord p) : nodeCoord(p) {
+ostream &Coord::operator<<(ostream &out) const {
+    return out << Coord::to_string();
 }
 
-Node::Node(int x, int y) : nodeCoord(Coord {x, y}) {
-}
-
-void Node::addOutEdge(Edge e) {
-    outEdges.insert(e);
-}
-
-size_t Node::degreeOut() const {
-    return outEdges.size();
+string Coord::to_string() const {
+    return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
 }
 
 bool operator<(Coord a, Coord b) {
@@ -34,21 +26,28 @@ bool operator<(Edge a, Edge b) {
     return a.to < b.to;
 }
 
+Node::Node() = default;
 
-ostream &Coord::operator<<(ostream &out) const {
-    return out << Coord::to_string();
+Node::Node(Coord p) : nodeCoord(p) {
 }
 
-string Coord::to_string() const {
-    return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
+Node::Node(int x, int y) : nodeCoord(Coord{x, y}) {
 }
 
-string NodeErrorMsg(Coord p) {
-    return "Trying to add edge connecting node " + p.to_string() + ", which does not exist";
+void Node::addOutEdge(Edge e) {
+    outEdges.insert(e);
+}
+
+size_t Node::degreeOut() const {
+    return outEdges.size();
 }
 
 GraphException::GraphException(const string &msg) : msg(msg) {}
 
 const char *GraphException::what() const noexcept {
     return msg.c_str();
+}
+
+string NodeErrorMsg(Coord p) {
+    return "Trying to add edge connecting node " + p.to_string() + ", which does not exist";
 }

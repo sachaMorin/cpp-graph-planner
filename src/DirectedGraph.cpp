@@ -15,13 +15,16 @@ void DirectedGraph::addNode(Coord p) {
 }
 
 void DirectedGraph::addNode(int x, int y) {
-    addNode(Coord {x, y});
+    addNode(Coord{x, y});
 }
 
-size_t DirectedGraph::size() {
-    return nodeMap.size();
+bool DirectedGraph::hasNode(Coord p) const {
+    return nodeMap.count(p) > 0;
 }
 
+bool DirectedGraph::hasNode(int x, int y) const {
+    return hasNode(Coord{x, y});
+}
 
 void DirectedGraph::addEdge(Coord p1, Coord p2, double cost) {
     if (!hasNode(p1))
@@ -36,19 +39,27 @@ void DirectedGraph::addEdge(Coord p1, Coord p2) {
 }
 
 void DirectedGraph::addEdge(int x1, int y1, int x2, int y2, double cost) {
-    addEdge(Coord {x1, y1}, Coord {x2, y2}, cost);
+    addEdge(Coord{x1, y1}, Coord{x2, y2}, cost);
 }
 
 void DirectedGraph::addEdge(int x1, int y1, int x2, int y2) {
-    addEdge(Coord {x1, y1}, Coord {x2, y2}, 1.);
+    addEdge(Coord{x1, y1}, Coord{x2, y2}, 1.);
 }
 
-bool DirectedGraph::hasNode(Coord p) const {
-    return nodeMap.count(p) > 0;
+size_t DirectedGraph::size() {
+    return nodeMap.size();
 }
 
-bool DirectedGraph::hasNode(int x, int y) const {
-    return hasNode(Coord{x, y});
+size_t DirectedGraph::nEdges() const {
+    size_t result = 0;
+    for (auto &[coord, node]: *this)
+        result += node.degreeOut();
+    return result;
+}
+
+void DirectedGraph::printNodesDegrees() const {
+    for (auto const &[coord, node]: *this)
+        cout << coord.to_string() << ": " << node.degreeOut() << endl;
 }
 
 _Rb_tree_iterator<pair<const Coord, Node>> DirectedGraph::begin() {
@@ -57,18 +68,6 @@ _Rb_tree_iterator<pair<const Coord, Node>> DirectedGraph::begin() {
 
 _Rb_tree_iterator<pair<const Coord, Node>> DirectedGraph::end() {
     return nodeMap.end();
-}
-
-size_t DirectedGraph::nEdges() const {
-    size_t result = 0;
-    for(auto &[coord, node]: *this)
-        result += node.degreeOut();
-    return result;
-}
-
-void DirectedGraph::printNodesDegrees() const {
-    for (auto const &[coord, node]: *this)
-        cout << coord.to_string() << ": " << node.degreeOut() << endl;
 }
 
 _Rb_tree_const_iterator<pair<const Coord, Node>> DirectedGraph::begin() const {

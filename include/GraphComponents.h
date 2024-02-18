@@ -14,7 +14,7 @@ using namespace std;
 struct Coord {
     int x;
     int y;
-    ostream& operator<<(ostream &out);
+    ostream& operator<<(ostream &out) const;
     string to_string() const;
 };
 
@@ -35,7 +35,7 @@ public:
     explicit Node(Coord p);
     explicit Node(int x, int y);
     void addOutEdge(Edge e);
-    size_t degreeOut();
+    size_t degreeOut() const;
 };
 
 

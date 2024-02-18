@@ -18,7 +18,7 @@ void Node::addOutEdge(Edge e) {
     outEdges.insert(e);
 }
 
-size_t Node::degreeOut() {
+size_t Node::degreeOut() const {
     return outEdges.size();
 }
 
@@ -35,7 +35,7 @@ bool operator<(Edge a, Edge b) {
 }
 
 
-ostream &Coord::operator<<(ostream &out) {
+ostream &Coord::operator<<(ostream &out) const {
     return out << Coord::to_string();
 }
 

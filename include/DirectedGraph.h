@@ -15,20 +15,22 @@ public:
     void addNode(Coord p);
     void addNode(int x, int y);
 
-    bool hasNode(Coord p);
-    bool hasNode(int x, int y);
+    bool hasNode(Coord p) const;
+    bool hasNode(int x, int y) const;
 
     virtual void addEdge(Coord p1, Coord p2, double cost);
     void addEdge(Coord p1, Coord p2);
     void addEdge(int x1, int y1, int x2, int y2, double cost);
     void addEdge(int x1, int y1, int x2, int y2);
 
-    virtual size_t nEdges();
+    virtual size_t nEdges() const;
     size_t size();
-    void printNodesDegrees();
+    void printNodesDegrees() const;
 
     _Rb_tree_iterator<pair<const Coord, Node>> begin();
     _Rb_tree_iterator<pair<const Coord, Node>> end();
+    _Rb_tree_const_iterator<pair<const Coord, Node>> begin() const;
+    _Rb_tree_const_iterator<pair<const Coord, Node>> end() const;
 protected:
    map<Coord, Node> nodeMap;
 };

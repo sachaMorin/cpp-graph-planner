@@ -6,7 +6,7 @@
 #define CPP_PLANNER_GRAPH_H
 
 #include <map>
-#include "Node.h"
+#include "GraphComponents.h"
 
 using namespace std;
 

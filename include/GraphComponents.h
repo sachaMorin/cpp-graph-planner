@@ -2,8 +2,8 @@
 // Created by sacha on 15/02/24.
 //
 
-#ifndef CPP_PLANNER_NODE_H
-#define CPP_PLANNER_NODE_H
+#ifndef CPP_PLANNER_GRAPHCOMPONENTS_H
+#define CPP_PLANNER_GRAPHCOMPONENTS_H
 
 #include <iostream>
 #include <set>
@@ -40,4 +40,4 @@ public:
 
 
 
-#endif //CPP_PLANNER_NODE_H
+#endif //CPP_PLANNER_GRAPHCOMPONENTS_H

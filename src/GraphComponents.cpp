@@ -2,7 +2,7 @@
 // Created by sacha on 15/02/24.
 //
 #include <string>
-#include "../include/Node.h"
+#include "../include/GraphComponents.h"
 
 using namespace std;
 

@@ -12,6 +12,7 @@
 
 using namespace std;
 
+// 2D Coordinate
 struct Coord {
     int x;
     int y;
@@ -23,6 +24,7 @@ struct Coord {
 
 bool operator<(Coord a, Coord b);
 
+// Graph Edge
 struct Edge {
     Coord to;
     double cost = 1.;
@@ -30,9 +32,8 @@ struct Edge {
 
 bool operator<(Edge a, Edge b);
 
+// Graph Node
 class Node {
-    Coord nodeCoord;
-    std::set<Edge> outEdges{};
 public:
     explicit Node();
 
@@ -43,8 +44,13 @@ public:
     void addOutEdge(Edge e);
 
     size_t degreeOut() const;
+
+private:
+    Coord nodeCoord;
+    set<Edge> outEdges{};
 };
 
+// Error handling
 struct GraphException : exception {
     string msg;
 

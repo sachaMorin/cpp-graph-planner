@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <map>
 #include "include/Graph.h"
 
 using namespace std;
@@ -15,12 +14,13 @@ int main() {
 
     for (int i = 1; i < 19; i++)
         for (int j = 1; j < 19; j++) {
-            g.addUndirectedEdge(i, j, i - 1, j - 1);
-            g.addUndirectedEdge(i, j, i + 1, j - 1);
-            g.addUndirectedEdge(i, j, i - 1, j + 1);
-            g.addUndirectedEdge(i, j, i + 1, j + 1);
+            g.addUndirectedEdge(i, j, i - 1, j);
+            g.addUndirectedEdge(i, j, i, j - 1);
+            g.addUndirectedEdge(i, j, i + 1, j);
+            g.addUndirectedEdge(i, j, i, j + 1);
         }
     cout << g.size();
+
 
 //    g.addNode(0, 0);
 //    try {

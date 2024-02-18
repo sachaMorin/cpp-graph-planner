@@ -5,7 +5,7 @@
 #ifndef CPP_PLANNER_NODE_H
 #define CPP_PLANNER_NODE_H
 
-#include <vector>
+#include <set>
 #include <string>
 
 using namespace std;
@@ -22,9 +22,11 @@ struct Edge {
     double cost = 1.;
 };
 
+bool operator<(Edge a, Edge b);
+
 class Node {
     Coord nodeCoord;
-    std::vector<Edge> outEdges {};
+    std::set<Edge> outEdges {};
 public:
     explicit Node();
     explicit Node(Coord p);

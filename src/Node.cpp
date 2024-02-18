@@ -15,7 +15,7 @@ Node::Node(int x, int y) : nodeCoord(Coord {x, y}) {
 }
 
 void Node::addOutEdge(Edge e) {
-    outEdges.push_back(e);
+    outEdges.insert(e);
 }
 
 bool operator<(Coord a, Coord b) {
@@ -24,6 +24,10 @@ bool operator<(Coord a, Coord b) {
     if (a.x > b.x)
         return false;
     return a.y < b.y;
+}
+
+bool operator<(Edge a, Edge b) {
+    return a.to < b.to;
 }
 
 

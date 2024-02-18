@@ -21,6 +21,8 @@ public:
     void addUndirectedEdge(Coord p1, Coord p2, double cost = 1.);
     void addUndirectedEdge(int x1, int y1, int x2, int y2, double cost = 1.);
     size_t size();
+    _Rb_tree_iterator<pair<const Coord, Node>> begin();
+    _Rb_tree_iterator<pair<const Coord, Node>> end();
 private:
    map<Coord, Node> nodeMap;
 };

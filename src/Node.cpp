@@ -1,7 +1,7 @@
 //
 // Created by sacha on 15/02/24.
 //
-
+#include <string>
 #include "../include/Node.h"
 
 using namespace std;
@@ -18,6 +18,10 @@ void Node::addOutEdge(Edge e) {
     outEdges.insert(e);
 }
 
+size_t Node::degreeOut() {
+    return outEdges.size();
+}
+
 bool operator<(Coord a, Coord b) {
     if (a.x < b.x)
         return true;
@@ -31,3 +35,10 @@ bool operator<(Edge a, Edge b) {
 }
 
 
+ostream &Coord::operator<<(ostream &out) {
+    return out << Coord::to_string();
+}
+
+string Coord::to_string() const {
+    return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
+}

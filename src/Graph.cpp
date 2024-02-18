@@ -9,7 +9,7 @@ using namespace std;
 
 void Graph::addNode(Coord p) {
     if (hasNode(p))
-        throw GraphException("Node with coordinates (" + to_string(p.x) + ", " +  to_string(p.y) + ") already exists");
+        throw GraphException("Node with coordinates " + p.to_string() + " already exists");
 
     nodeMap[p] = Node(p);
 }
@@ -23,7 +23,7 @@ size_t Graph::size() {
 }
 
 string NodeErrorMsg(Coord p) {
-    return "Trying to add edge connecting node (" + to_string(p.x) + ", " +  to_string(p.y) + "), which does not exist";
+    return "Trying to add edge connecting node " + p.to_string() + ", which does not exist";
 }
 
 void Graph::addEdge(Coord p1, Coord p2, double cost) {
@@ -57,6 +57,14 @@ bool Graph::hasNode(Coord p) {
 
 bool Graph::hasNode(int x, int y) {
     return hasNode(Coord{x, y});
+}
+
+_Rb_tree_iterator<pair<const Coord, Node>> Graph::begin() {
+    return nodeMap.begin();
+}
+
+_Rb_tree_iterator<pair<const Coord, Node>> Graph::end() {
+    return nodeMap.end();
 }
 
 

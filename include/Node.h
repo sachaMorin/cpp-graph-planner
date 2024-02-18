@@ -5,6 +5,7 @@
 #ifndef CPP_PLANNER_NODE_H
 #define CPP_PLANNER_NODE_H
 
+#include <iostream>
 #include <set>
 #include <string>
 
@@ -13,6 +14,8 @@ using namespace std;
 struct Coord {
     int x;
     int y;
+    ostream& operator<<(ostream &out);
+    string to_string() const;
 };
 
 bool operator<(Coord a, Coord b);
@@ -32,6 +35,7 @@ public:
     explicit Node(Coord p);
     explicit Node(int x, int y);
     void addOutEdge(Edge e);
+    size_t degreeOut();
 };
 
 

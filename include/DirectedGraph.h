@@ -19,13 +19,13 @@ public:
     bool hasNode(int x, int y);
 
     virtual void addEdge(Coord p1, Coord p2, double cost);
-    virtual void addEdge(Coord p1, Coord p2);
-    virtual void addEdge(int x1, int y1, int x2, int y2, double cost);
-    virtual void addEdge(int x1, int y1, int x2, int y2);
+    void addEdge(Coord p1, Coord p2);
+    void addEdge(int x1, int y1, int x2, int y2, double cost);
+    void addEdge(int x1, int y1, int x2, int y2);
 
-    int nEdges();
-
+    virtual size_t nEdges();
     size_t size();
+    void printNodesDegrees();
 
     _Rb_tree_iterator<pair<const Coord, Node>> begin();
     _Rb_tree_iterator<pair<const Coord, Node>> end();

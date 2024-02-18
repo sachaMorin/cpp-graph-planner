@@ -12,3 +12,7 @@ void UndirectedGraph::addEdge(Coord p1, Coord p2, double cost) {
     nodeMap[p1].addOutEdge(Edge{p2, cost});
     nodeMap[p2].addOutEdge(Edge{p1, cost});
 }
+
+size_t UndirectedGraph::nEdges() {
+    return DirectedGraph::nEdges()/2;
+}

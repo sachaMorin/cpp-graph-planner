@@ -63,8 +63,16 @@ _Rb_tree_iterator<pair<const Coord, Node>> DirectedGraph::end() {
     return nodeMap.end();
 }
 
-int DirectedGraph::nEdges() {
-    return 0;
+size_t DirectedGraph::nEdges() {
+    size_t result = 0;
+    for(auto &[coord, node]: *this)
+        result += node.degreeOut();
+    return result;
+}
+
+void DirectedGraph::printNodesDegrees() {
+    for (auto& [coord, node]: *this)
+        cout << coord.to_string() << ": " << node.degreeOut() << endl;
 }
 
 

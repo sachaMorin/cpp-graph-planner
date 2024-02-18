@@ -7,5 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(cpp-planner main.cpp
         src/GraphComponents.cpp
         include/GraphComponents.h
-        src/Graph.cpp
-        include/Graph.h)
+        src/DirectedGraph.cpp
+        include/DirectedGraph.h
+        src/UndirectedGraph.cpp
+        include/UndirectedGraph.h)

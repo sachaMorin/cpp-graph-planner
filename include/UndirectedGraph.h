@@ -7,12 +7,11 @@
 
 #include "../include/DirectedGraph.h"
 
+
 class UndirectedGraph : public DirectedGraph {
 public:
+    using DirectedGraph::addEdge; // Pull overloads from DirectedGraph
     void addEdge(Coord p1, Coord p2, double cost) override;
-    virtual void addEdge(Coord p1, Coord p2);
-    virtual void addEdge(int x1, int y1, int x2, int y2, double cost);
-    virtual void addEdge(int x1, int y1, int x2, int y2);
 };
 
 

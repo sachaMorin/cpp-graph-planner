@@ -34,13 +34,13 @@ public:
 
     void printNodesDegrees() const;
 
-    _Rb_tree_iterator<pair<const Coord, Node>> begin();
+    map<Coord, Node>::iterator begin();
 
-    _Rb_tree_iterator<pair<const Coord, Node>> end();
+    map<Coord, Node>::iterator end();
 
-    _Rb_tree_const_iterator<pair<const Coord, Node>> begin() const;
+    map<Coord, Node>::const_iterator begin() const;
 
-    _Rb_tree_const_iterator<pair<const Coord, Node>> end() const;
+    map<Coord, Node>::const_iterator end() const;
 
 protected:
     map<Coord, Node> nodeMap;

@@ -62,19 +62,19 @@ void DirectedGraph::printNodesDegrees() const {
         cout << coord.to_string() << ": " << node.degreeOut() << endl;
 }
 
-_Rb_tree_iterator<pair<const Coord, Node>> DirectedGraph::begin() {
+map<Coord, Node>::iterator DirectedGraph::begin() {
     return nodeMap.begin();
 }
 
-_Rb_tree_iterator<pair<const Coord, Node>> DirectedGraph::end() {
+map<Coord, Node>::iterator DirectedGraph::end() {
     return nodeMap.end();
 }
 
-_Rb_tree_const_iterator<pair<const Coord, Node>> DirectedGraph::begin() const {
+map<Coord, Node>::const_iterator DirectedGraph::begin() const {
     return nodeMap.cbegin();
 }
 
-_Rb_tree_const_iterator<pair<const Coord, Node>> DirectedGraph::end() const {
+map<Coord, Node>::const_iterator DirectedGraph::end() const {
     return nodeMap.cend();
 }
 

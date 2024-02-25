@@ -1,27 +1,15 @@
 #include <iostream>
 #include <vector>
-#include "include/UndirectedGraph.h"
+#include "include/GridGraph.h"
 
 using namespace std;
 
 int main() {
-    UndirectedGraph g;
+    GridGraph g = GridGraph(10, 10);
 
-    for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++)
-            g.addNode(i, j);
-
-
-    for (int i = 1; i < 3; i++)
-        for (int j = 1; j < 3; j++) {
-            g.addEdge(i, j, i - 1, j);
-            g.addEdge(i, j, i, j - 1);
-            g.addEdge(i, j, i + 1, j);
-            g.addEdge(i, j, i, j + 1);
-        }
-
-    cout << g.nEdges() << endl;
-    g.printNodesDegrees();
+    cout << g.size() << " nodes" << "\n";
+    cout << g.nEdges() << " edges" << "\n";
+//    g.printNodesDegrees();
 
 
     return 0;

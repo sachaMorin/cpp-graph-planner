@@ -10,4 +10,6 @@ add_executable(cpp-planner main.cpp
         src/DirectedGraph.cpp
         include/DirectedGraph.h
         src/UndirectedGraph.cpp
-        include/UndirectedGraph.h)
+        include/UndirectedGraph.h
+        src/GridGraph.cpp
+        include/GridGraph.h)

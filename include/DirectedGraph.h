@@ -5,6 +5,7 @@
 #ifndef CPP_PLANNER_DIRECTEDGRAPH_H
 #define CPP_PLANNER_DIRECTEDGRAPH_H
 
+#include <vector>
 #include <map>
 #include "GraphComponents.h"
 
@@ -33,6 +34,16 @@ public:
     virtual size_t nEdges() const;
 
     void printNodesDegrees() const;
+
+    template<typename Callable>
+    vector<Coord> aStar(Coord start, Coord goal, Callable heuristic);
+
+    template<typename Callable>
+    vector<Coord> aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic);
+
+    vector<Coord> aStar(Coord start, Coord goal);
+
+    vector<Coord> aStar(int xStart, int yStart, int xGoal, int yGoal);
 
     map<Coord, Node>::iterator begin();
 

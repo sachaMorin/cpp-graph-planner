@@ -30,10 +30,10 @@ bool operator<(Edge a, Edge b) {
 
 Node::Node() = default;
 
-Node::Node(Coord p) : nodeCoord(p) {
+Node::Node(Coord p) : coord(p) {
 }
 
-Node::Node(int x, int y) : nodeCoord(Coord{x, y}) {
+Node::Node(int x, int y) : coord(Coord{x, y}) {
 }
 
 void Node::addOutEdge(Edge e) {

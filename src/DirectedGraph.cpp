@@ -3,6 +3,7 @@
 //
 
 #include "string"
+#include "cmath"
 #include "../include/DirectedGraph.h"
 
 using namespace std;
@@ -60,6 +61,32 @@ size_t DirectedGraph::nEdges() const {
 void DirectedGraph::printNodesDegrees() const {
     for (auto const &[coord, node]: *this)
         cout << coord.to_string() << ": " << node.degreeOut() << endl;
+}
+
+template<typename Callable>
+vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
+    // Draft
+
+    vector<Coord> path;
+    path.push_back(start);
+    path.push_back(goal);
+    return path;
+}
+
+template<typename Callable>
+vector<Coord> DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic) {
+    return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal}, heuristic);
+}
+
+vector<Coord> DirectedGraph::aStar(Coord start, Coord goal) {
+    auto squaredEuclidean = [] (Coord c1, Coord c2) {
+        return pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2);
+    };
+    return aStar(start, goal, squaredEuclidean);
+}
+
+vector<Coord> DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal) {
+    return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal});
 }
 
 map<Coord, Node>::iterator DirectedGraph::begin() {

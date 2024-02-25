@@ -54,7 +54,7 @@ public:
     set<Edge>::const_iterator end() const;
 
 private:
-    Coord nodeCoord;
+    Coord coord;
     set<Edge> outEdges{};
 };
 

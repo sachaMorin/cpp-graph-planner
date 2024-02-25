@@ -2,6 +2,8 @@
 // Created by sacha on 15/02/24.
 //
 #include "../include/DirectedGraph.h"
+#include "../include/GraphComponents.h"
+
 #include <string>
 
 using namespace std;
@@ -40,6 +42,22 @@ void Node::addOutEdge(Edge e) {
 
 size_t Node::degreeOut() const {
     return outEdges.size();
+}
+
+set<Edge>::iterator Node::begin() {
+    return outEdges.begin();
+}
+
+set<Edge>::iterator Node::end() {
+    return outEdges.end();
+}
+
+set<Edge>::const_iterator Node::begin() const {
+    return outEdges.cbegin();
+}
+
+set<Edge>::const_iterator Node::end() const {
+    return outEdges.cend();
 }
 
 GraphException::GraphException(const string &msg) : msg(msg) {}

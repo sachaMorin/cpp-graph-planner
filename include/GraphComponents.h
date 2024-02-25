@@ -45,6 +45,14 @@ public:
 
     size_t degreeOut() const;
 
+    set<Edge>::iterator begin();
+
+    set<Edge>::iterator end();
+
+    set<Edge>::const_iterator begin() const;
+
+    set<Edge>::const_iterator end() const;
+
 private:
     Coord nodeCoord;
     set<Edge> outEdges{};

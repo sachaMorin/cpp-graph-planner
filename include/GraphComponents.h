@@ -5,10 +5,10 @@
 #ifndef CPP_PLANNER_GRAPHCOMPONENTS_H
 #define CPP_PLANNER_GRAPHCOMPONENTS_H
 
-#include <map>
 #include <iostream>
-#include <set>
 #include <string>
+#include <set>
+#include <map>
 
 using namespace std;
 
@@ -26,7 +26,7 @@ bool operator<(Coord a, Coord b);
 
 // Graph Edge
 struct Edge {
-    Coord to;
+    Coord to {0, 0};
     double cost = 1.;
 };
 
@@ -35,6 +35,8 @@ bool operator<(Edge a, Edge b);
 // Graph Node
 class Node {
 public:
+    Coord coord;
+
     explicit Node();
 
     explicit Node(Coord p);
@@ -53,8 +55,12 @@ public:
 
     set<Edge>::const_iterator end() const;
 
+    // Useful data members for A*
+    Coord previous;
+    double fScore = numeric_limits<double>::infinity();
+    double gScore = numeric_limits<double>::infinity();
+
 private:
-    Coord coord;
     set<Edge> outEdges{};
 };
 

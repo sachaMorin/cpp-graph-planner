@@ -10,7 +10,7 @@ int main() {
     cout << g.size() << " nodes" << "\n";
     cout << g.nEdges() << " edges" << "\n";
 
-    g.aStar(5, 5, 1, 1);
+    g.aStar(5, 5, 5, 5);
 //    g.printNodesDegrees();
 
 

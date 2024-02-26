@@ -4,6 +4,7 @@
 
 #include "string"
 #include "cmath"
+#include <queue>
 #include "../include/DirectedGraph.h"
 
 using namespace std;
@@ -60,12 +61,27 @@ size_t DirectedGraph::nEdges() const {
 
 void DirectedGraph::printNodesDegrees() const {
     for (auto const &[coord, node]: *this)
-        cout << coord.to_string() << ": " << node.degreeOut() << endl;
+        cout << coord.to_string() << ": " << node.degreeOut() << "\n";
 }
 
 template<typename Callable>
 vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
+    // Set up min priority queue comparing Node fscores
+    auto cmp = [] (const Node* left, const Node* right) {return left->fScore > right->fScore;};
+    priority_queue<Node*, vector<Node*>, decltype(cmp)> openSet;
+
     // Draft
+    for(auto& [coord, current]: *this) {
+        current.fScore = heuristic(coord, goal);
+        openSet.push(&current);
+    }
+
+    // Check order in queue
+    while (!openSet.empty()) {
+        Node* topNode = openSet.top();
+        cout << topNode->coord.to_string() << " : " << topNode->fScore << "\n";
+        openSet.pop();
+    }
 
     vector<Coord> path;
     path.push_back(start);
@@ -79,10 +95,10 @@ vector<Coord> DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal,
 }
 
 vector<Coord> DirectedGraph::aStar(Coord start, Coord goal) {
-    auto squaredEuclidean = [] (Coord c1, Coord c2) {
-        return pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2);
+    auto euclideanDist = [] (Coord c1, Coord c2) {
+        return sqrt(pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2));
     };
-    return aStar(start, goal, squaredEuclidean);
+    return aStar(start, goal, euclideanDist);
 }
 
 vector<Coord> DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal) {

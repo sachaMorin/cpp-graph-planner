@@ -56,9 +56,10 @@ public:
     set<Edge>::const_iterator end() const;
 
     // Useful data members for A*
-    Coord previous;
+    Node* previous = nullptr;
     double fScore = numeric_limits<double>::infinity();
     double gScore = numeric_limits<double>::infinity();
+    bool inQueue = false;
 
 private:
     set<Edge> outEdges{};

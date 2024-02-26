@@ -45,6 +45,7 @@ public:
 
     vector<Coord> aStar(int xStart, int yStart, int xGoal, int yGoal);
 
+
     map<Coord, Node>::iterator begin();
 
     map<Coord, Node>::iterator end();
@@ -55,6 +56,11 @@ public:
 
 protected:
     map<Coord, Node> nodeMap;
+
+    vector<Coord> reconstructPath(Node& goal);
+
+private:
+    void resetAStarFields();
 };
 
 

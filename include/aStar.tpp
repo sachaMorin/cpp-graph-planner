@@ -2,7 +2,7 @@
 // Created by sacha on 26/02/24.
 //
 
-// Provide a header implementation in a separate file
+// Provide a header implementation of template members in a separate file
 // See https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
 
 #include <queue>
@@ -13,6 +13,11 @@ vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) 
     // A* Implementation based on Wikipedia
     // Nodes store their own previous pointer, fScore, gScore and inQueue values
     // and are accessible in nodeMap
+    if (!hasNode(start))
+        throw GraphException("Start node " + start.to_string() + " is not in the graph.");
+    if (!hasNode(goal))
+        throw GraphException("Goal node " + goal.to_string() + " is not in the graph.");
+
     resetAStarFields();
 
     Node& startNode = nodeMap[start];

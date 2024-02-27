@@ -4,7 +4,6 @@
 
 #include "string"
 #include "cmath"
-#include <queue>
 #include <list>
 #include "../include/DirectedGraph.h"
 
@@ -53,6 +52,15 @@ size_t DirectedGraph::size() {
     return nodeMap.size();
 }
 
+int DirectedGraph::nVisited() const {
+    // Check nodes visited by A*
+    int result = 0;
+    for (auto const &[_, node]: *this)
+        if (node.gScore < numeric_limits<double>::infinity())
+            result += 1;
+    return result;
+}
+
 size_t DirectedGraph::nEdges() const {
     size_t result = 0;
     for (auto &[coord, node]: *this)
@@ -65,62 +73,6 @@ void DirectedGraph::printNodesDegrees() const {
         cout << coord.to_string() << ": " << node.degreeOut() << "\n";
 }
 
-template<typename Callable>
-vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
-    // A* Implementation based on Wikipedia
-    // Nodes store their own previous pointer, fScore, gScore and inQueue values
-    // and are accessible in nodeMap
-    resetAStarFields();
-
-    Node& startNode = nodeMap[start];
-    Node& goalNode = nodeMap[goal];
-
-    // For node n, gScore[n] is the cost of the cheapest path from start to n currently known
-    startNode.gScore = 0.0;
-
-    // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our startNode best guess as to
-    // how cheap a path could be from start to finish if it goes through n.
-    startNode.fScore = heuristic(startNode.coord, goalNode.coord);
-
-    // Set up min priority queue comparing Node fScores
-    auto cmp = [] (const Node* left, const Node* right) {return left->fScore > right->fScore;};
-    priority_queue<Node*, vector<Node*>, decltype(cmp)> openSet;
-
-    openSet.push(&startNode);
-    startNode.inQueue = true;
-
-
-    while(!openSet.empty()) {
-        Node* minNode = openSet.top();
-        if (minNode == &goalNode)
-            return reconstructPath(goalNode);
-
-        openSet.pop();
-        minNode->inQueue = false;
-
-        for (const Edge outEdge : *minNode) {
-            Node& neighbor = nodeMap[outEdge.to];
-            double tentativeGScore = minNode->gScore + outEdge.cost;
-            if (tentativeGScore < neighbor.gScore) {
-                neighbor.previous = minNode;
-                neighbor.gScore = tentativeGScore;
-                neighbor.fScore = tentativeGScore + heuristic(neighbor.coord, goalNode.coord);
-                if (!neighbor.inQueue) {
-                    openSet.push(&neighbor);
-                    neighbor.inQueue = true;
-                }
-            }
-        }
-    }
-
-    // Return empty path if no path exists
-    return {};
-}
-
-template<typename Callable>
-vector<Coord> DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic) {
-    return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal}, heuristic);
-}
 
 vector<Coord> DirectedGraph::aStar(Coord start, Coord goal) {
     auto euclideanDist = [] (Coord c1, Coord c2) {
@@ -164,11 +116,9 @@ vector<Coord> DirectedGraph::reconstructPath(Node& goal) {
     Node* currentNode = &goal;
 
     // Only start has gScore 0
-    while (currentNode->gScore != 0) {
+    while (currentNode != nullptr) {
         path.push_back(currentNode->coord);
         currentNode = currentNode->previous;
-        if (currentNode == nullptr)
-            throw GraphException("Bumped into a nullptr while reconstructing path. This should not happen");
     }
     path.reverse();
 

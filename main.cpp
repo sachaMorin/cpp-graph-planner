@@ -6,7 +6,7 @@ using namespace std;
 
 
 int main() {
-    GridGraph g = GridGraph(100, 100);
+    GridGraph g = GridGraph(100, 100, true);
 
     int xGoal = 99, yGoal  = 99;
 

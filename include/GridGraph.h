@@ -10,10 +10,11 @@
 
 class GridGraph: public UndirectedGraph {
 public:
-    GridGraph(int width, int height);
+    GridGraph(int width, int height, bool eightWay = false);
 private:
     int width;
     int height;
+    bool eightWay;
 };
 
 

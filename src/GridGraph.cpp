@@ -3,6 +3,7 @@
 //
 
 #include <vector>
+#include <cmath>
 #include "../include/GridGraph.h"
 
 GridGraph::GridGraph() : width(0), height(0), eightWay(false) {
@@ -24,20 +25,21 @@ void GridGraph::createNodes() {
 void GridGraph::createEdges() {
     for(const auto& [nodeFrom, _]: *this) {
         int x = nodeFrom.x, y = nodeFrom.y;
-        vector<Coord> coords;
-        coords.push_back(Coord {x + 1, y}); // North
-        coords.push_back(Coord {x, y + 1}); // East
-        coords.push_back(Coord {x - 1, y}); // South
-        coords.push_back(Coord {x, y - 1}); // West
+        vector<Edge> coords;
+        coords.push_back(Edge {x + 1, y, 1.}); // North
+        coords.push_back(Edge {x, y + 1, 1.}); // East
+        coords.push_back(Edge {x - 1, y, 1.}); // South
+        coords.push_back(Edge {x, y - 1, 1.}); // West
         if (eightWay) {
-            coords.push_back(Coord {x + 1, y + 1}); // North East
-            coords.push_back(Coord {x - 1, y + 1}); // South East
-            coords.push_back(Coord {x - 1, y - 1}); // South West
-            coords.push_back(Coord {x + 1, y - 1}); // North East
+            double sqrt2 = sqrt(2);
+            coords.push_back(Edge {x + 1, y + 1, sqrt2}); // North East
+            coords.push_back(Edge {x - 1, y + 1, sqrt2}); // South East
+            coords.push_back(Edge {x - 1, y - 1, sqrt2}); // South West
+            coords.push_back(Edge {x + 1, y - 1, sqrt2}); // North East
         }
-        for(const auto& nodeTo: coords)
-            if (this->hasNode(nodeTo))
-                this->addEdge(nodeFrom, nodeTo);
+        for(const auto& edge: coords)
+            if (this->hasNode(edge.to))
+                this->addEdge(nodeFrom, edge.to, edge.cost);
 
     }
 }

@@ -40,8 +40,11 @@ vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) 
 
     while(!openSet.empty()) {
         Node* minNode = openSet.top();
-        if (minNode == &goalNode)
-            return reconstructPath(goalNode);
+        if (minNode == &goalNode) {
+            aStarPath = reconstructPath(goalNode);
+            auto result = aStarPath;
+            return result; // Return copy
+        }
 
         openSet.pop();
         minNode->inQueue = false;

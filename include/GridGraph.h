@@ -10,11 +10,15 @@
 
 class GridGraph: public UndirectedGraph {
 public:
-    GridGraph(int width, int height, bool eightWay = false);
-private:
+    GridGraph();
+    GridGraph(int width, int height, bool eightWayConn = false);
+protected:
     int width;
     int height;
     bool eightWay;
+
+    virtual void createNodes();
+    void createEdges();
 };
 
 

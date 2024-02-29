@@ -19,6 +19,8 @@ int main() {
     auto pathDijkstra = g.aStar(0, 0, xGoal, yGoal, [] (Coord a, Coord b) {return 0;});
     cout << "Nodes visited by Dijkstra       : " << g.nVisited() << "\n";
 
+    cout << g.size();
+
 
     return 0;
 }

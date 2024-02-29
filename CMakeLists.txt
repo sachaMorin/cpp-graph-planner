@@ -12,7 +12,9 @@ add_library(Graph
         src/GraphComponents.cpp
         src/DirectedGraph.cpp
         src/UndirectedGraph.cpp
-        src/GridGraph.cpp)
+        src/GridGraph.cpp
+        src/OccupancyGraph.cpp
+        include/OccupancyGraph.h)
 
 
 add_executable(cpp-planner main.cpp)

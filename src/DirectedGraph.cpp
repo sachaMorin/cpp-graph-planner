@@ -108,6 +108,7 @@ void DirectedGraph::resetAStarFields()  {
         node.gScore = numeric_limits<double>::infinity();
         node.inQueue = false;
     }
+    aStarPath = {};
 }
 
 vector<Coord> DirectedGraph::reconstructPath(Node& goal) {

@@ -56,6 +56,8 @@ public:
     map<Coord, Node>::const_iterator end() const;
 
 protected:
+
+    vector<Coord> aStarPath {}; // Cache path when we call aStar
     map<Coord, Node> nodeMap;
 
     static vector<Coord> reconstructPath(Node& goal) ;

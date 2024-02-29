@@ -74,14 +74,14 @@ void DirectedGraph::printNodesDegrees() const {
 }
 
 
-vector<Coord> DirectedGraph::aStar(Coord start, Coord goal) {
+GraphPath DirectedGraph::aStar(Coord start, Coord goal) {
     auto euclideanDist = [] (Coord c1, Coord c2) {
         return sqrt(pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2));
     };
     return aStar(start, goal, euclideanDist);
 }
 
-vector<Coord> DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal) {
+GraphPath DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal) {
     return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal});
 }
 
@@ -111,7 +111,7 @@ void DirectedGraph::resetAStarFields()  {
     aStarPath = {};
 }
 
-vector<Coord> DirectedGraph::reconstructPath(Node& goal) {
+GraphPath DirectedGraph::reconstructPath(Node& goal) {
     // Reconstruct path
     list<Coord> path;
     Node* currentNode = &goal;
@@ -123,7 +123,9 @@ vector<Coord> DirectedGraph::reconstructPath(Node& goal) {
     }
     path.reverse();
 
-    return {path.begin(), path.end()};
+    GraphPath result {{path.begin(), path.end()}, goal.gScore};
+
+    return result;
 }
 
 

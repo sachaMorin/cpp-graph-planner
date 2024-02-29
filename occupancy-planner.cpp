@@ -16,8 +16,11 @@ int main(int argc, char** argv )
 
 //    OccupancyGraph graph {argv[1]};
     OccupancyGraph graph = OccupancyGraph (argv[1]);
-    cout << graph.size();
-    graph.aStar(1, 1, 100, 100, [] (Coord a, Coord b) {return 0;});
-    graph.saveImage("map_astar.png");
+    auto [_, cost] = graph.aStar(1, 1, 100, 100);
+    cout << "Cost A* : "  << cost << "\n";
+    graph.saveImage("map_aStar.png");
+    auto dPath = graph.aStar(1, 1, 100, 100, [] (Coord a, Coord b) {return 0;});
+    cout << "Cost Dijkstra : "  << dPath.cost << "\n";
+    graph.saveImage("map_dijkstra.png");
     return 0;
 }

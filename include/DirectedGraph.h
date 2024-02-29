@@ -38,14 +38,14 @@ public:
     void printNodesDegrees() const;
 
     template<typename Callable>
-    vector<Coord> aStar(Coord start, Coord goal, Callable heuristic);
+    GraphPath aStar(Coord start, Coord goal, Callable heuristic);
 
     template<typename Callable>
-    vector<Coord> aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic);
+    GraphPath aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic);
 
-    vector<Coord> aStar(Coord start, Coord goal);
+    GraphPath aStar(Coord start, Coord goal);
 
-    vector<Coord> aStar(int xStart, int yStart, int xGoal, int yGoal);
+    GraphPath aStar(int xStart, int yStart, int xGoal, int yGoal);
 
     map<Coord, Node>::iterator begin();
 
@@ -57,10 +57,10 @@ public:
 
 protected:
 
-    vector<Coord> aStarPath {}; // Cache path when we call aStar
+    GraphPath aStarPath {}; // Cache path when we call aStar
     map<Coord, Node> nodeMap;
 
-    static vector<Coord> reconstructPath(Node& goal) ;
+    static GraphPath reconstructPath(Node& goal) ;
 
 private:
     void resetAStarFields();

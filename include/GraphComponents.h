@@ -65,6 +65,11 @@ private:
     set<Edge> outEdges{};
 };
 
+struct GraphPath {
+    vector<Coord> path {};
+    double cost {0.};
+};
+
 // Error handling
 struct GraphException : exception {
     string msg;

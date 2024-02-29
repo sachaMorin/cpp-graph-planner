@@ -9,7 +9,7 @@
 #include "DirectedGraph.h"
 
 template<typename Callable>
-vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
+GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
     // A* Implementation based on Wikipedia
     // Nodes store their own previous pointer, fScore, gScore and inQueue values
     // and are accessible in nodeMap
@@ -26,7 +26,7 @@ vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) 
     // For node n, gScore[n] is the cost of the cheapest path from start to n currently known
     startNode.gScore = 0.0;
 
-    // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our startNode best guess as to
+    // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our best guess as to
     // how cheap a path could be from start to finish if it goes through n.
     startNode.fScore = heuristic(startNode.coord, goalNode.coord);
 
@@ -69,6 +69,6 @@ vector<Coord> DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) 
 }
 
 template<typename Callable>
-vector<Coord> DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic) {
+GraphPath DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic) {
     return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal}, heuristic);
 }

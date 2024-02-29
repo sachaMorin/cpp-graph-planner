@@ -43,7 +43,7 @@ void OccupancyGraph::saveImage(const string &filename) {
             rgbImage.at<Vec3b>(coord.x, coord.y) = Vec3b(238, 238, 175);
 
     // Path
-    for (const auto& coord: aStarPath)
+    for (const auto& coord: aStarPath.path)
         rgbImage.at<Vec3b>(coord.x, coord.y) = Vec3b(0, 0, 255);
 
 

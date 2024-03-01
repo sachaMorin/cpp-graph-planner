@@ -20,8 +20,8 @@ add_library(Graph
 add_executable(cpp-planner main.cpp)
 target_link_libraries(cpp-planner Graph)
 
-add_executable(build-default-map build-default-map.cpp)
-target_link_libraries(build-default-map ${OpenCV_LIBS} )
+add_executable(default-maps default-maps.cpp)
+target_link_libraries(default-maps ${OpenCV_LIBS} )
 
 add_executable(occupancy-planner occupancy-planner.cpp)
 target_link_libraries(occupancy-planner Graph)

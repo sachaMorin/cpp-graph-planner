@@ -48,6 +48,7 @@ void OccupancyGraph::saveImage(const string &filename) {
 
 
     imwrite(filename, rgbImage);
+    cout << "Image saved as " << filename << endl;
 }
 
 cv::Mat OccupancyGraph::loadMap(const string& path) {

@@ -24,7 +24,7 @@ void OccupancyGraph::createNodes() {
         for(int j=0; j < height; j++) {
             auto pixelValue = static_cast<double> (map.at<uchar>(i, j));
             double occ = 1 - pixelValue/255;
-            if (occ < .5)
+            if (occ < .01)
                 this->addNode(i, j);
         }
 }

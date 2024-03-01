@@ -3,7 +3,7 @@
 //
 // Build default map with a middle square obstacle
 #include <opencv2/opencv.hpp>
-using namespace cv;
+
 int main()
 {
     // Create a 100x100 matrix filled with white

@@ -5,6 +5,7 @@
 #include "string"
 #include "cmath"
 #include <list>
+#include <functional>
 #include "../include/DirectedGraph.h"
 
 using namespace std;
@@ -73,12 +74,40 @@ void DirectedGraph::printNodesDegrees() const {
         cout << coord.to_string() << ": " << node.degreeOut() << "\n";
 }
 
+GraphPath DirectedGraph::aStar(Coord start, Coord goal, heuristic heuristic) {
+    std::function<double(Coord, Coord)> h;
+    switch(heuristic) {
+        case NONE: {
+            h = [] (Coord c1, Coord c2) {
+                return 0.0;
+            };
+            break;
+        }
+        case TAXICAB: {
+            h = [] (Coord c1, Coord c2) {
+                return abs(c1.x - c2.x) + abs(c1.y - c2.y);
+            };
+            break;
+        }
+        case EUCLIDEAN: {
+            h = [] (Coord c1, Coord c2) {
+                return sqrt(pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2));
+            };
+            break;
+        }
+
+        default:
+            throw GraphException("Invalid heuristic code.");
+    }
+    return aStar(start, goal, h);
+}
+
+GraphPath DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal, heuristic heuristic) {
+    return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal}, heuristic);
+}
 
 GraphPath DirectedGraph::aStar(Coord start, Coord goal) {
-    auto euclideanDist = [] (Coord c1, Coord c2) {
-        return sqrt(pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2));
-    };
-    return aStar(start, goal, euclideanDist);
+    return aStar(start, goal, EUCLIDEAN);
 }
 
 GraphPath DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal) {

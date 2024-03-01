@@ -43,6 +43,10 @@ public:
     template<typename Callable>
     GraphPath aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic);
 
+    GraphPath aStar(Coord start, Coord goal, heuristic heuristic);
+
+    GraphPath aStar(int xStart, int yStart, int xGoal, int yGoal, heuristic heuristic);
+
     GraphPath aStar(Coord start, Coord goal);
 
     GraphPath aStar(int xStart, int yStart, int xGoal, int yGoal);

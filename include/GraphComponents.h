@@ -70,6 +70,13 @@ struct GraphPath {
     double cost {0.};
 };
 
+enum heuristic {
+    NONE,
+    TAXICAB,
+    EUCLIDEAN
+};
+
+
 // Error handling
 struct GraphException : exception {
     string msg;

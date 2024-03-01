@@ -1,10 +1,9 @@
 //
 // Created by sacha on 15/02/24.
 //
-#include "../include/DirectedGraph.h"
-#include "../include/GraphComponents.h"
 
 #include <string>
+#include "GraphComponents.h"
 
 using namespace std;
 

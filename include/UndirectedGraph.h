@@ -5,7 +5,7 @@
 #ifndef CPP_PLANNER_UNDIRECTEDGRAPH_H
 #define CPP_PLANNER_UNDIRECTEDGRAPH_H
 
-#include "../include/DirectedGraph.h"
+#include "DirectedGraph.h"
 
 
 class UndirectedGraph : public DirectedGraph {

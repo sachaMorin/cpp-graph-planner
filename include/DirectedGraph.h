@@ -9,7 +9,6 @@
 #include <map>
 #include "GraphComponents.h"
 
-using namespace std;
 
 class DirectedGraph {
 public:
@@ -51,18 +50,18 @@ public:
 
     GraphPath aStar(int xStart, int yStart, int xGoal, int yGoal);
 
-    map<Coord, Node>::iterator begin();
+    std::map<Coord, Node>::iterator begin();
 
-    map<Coord, Node>::iterator end();
+    std::map<Coord, Node>::iterator end();
 
-    map<Coord, Node>::const_iterator begin() const;
+    std::map<Coord, Node>::const_iterator begin() const;
 
-    map<Coord, Node>::const_iterator end() const;
+    std::map<Coord, Node>::const_iterator end() const;
 
 protected:
 
     GraphPath aStarPath {}; // Cache path when we call aStar
-    map<Coord, Node> nodeMap;
+    std::map<Coord, Node> nodeMap;
 
     static GraphPath reconstructPath(Node& goal) ;
 

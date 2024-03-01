@@ -9,17 +9,17 @@
 #include <string>
 #include <set>
 #include <map>
+#include <vector>
 
-using namespace std;
 
 // 2D Coordinate
 struct Coord {
     int x;
     int y;
 
-    ostream &operator<<(ostream &out) const;
+    std::ostream &operator<<(std::ostream &out) const;
 
-    string to_string() const;
+    std::string to_string() const;
 };
 
 bool operator<(Coord a, Coord b);
@@ -47,26 +47,26 @@ public:
 
     size_t degreeOut() const;
 
-    set<Edge>::iterator begin();
+    std::set<Edge>::iterator begin();
 
-    set<Edge>::iterator end();
+    std::set<Edge>::iterator end();
 
-    set<Edge>::const_iterator begin() const;
+    std::set<Edge>::const_iterator begin() const;
 
-    set<Edge>::const_iterator end() const;
+    std::set<Edge>::const_iterator end() const;
 
     // Useful data members for A*
     Node* previous = nullptr;
-    double fScore = numeric_limits<double>::infinity();
-    double gScore = numeric_limits<double>::infinity();
+    double fScore = std::numeric_limits<double>::infinity();
+    double gScore = std::numeric_limits<double>::infinity();
     bool inQueue = false;
 
 private:
-    set<Edge> outEdges{};
+    std::set<Edge> outEdges{};
 };
 
 struct GraphPath {
-    vector<Coord> path {};
+    std::vector<Coord> path {};
     double cost {0.};
 };
 
@@ -78,15 +78,15 @@ enum heuristic {
 
 
 // Error handling
-struct GraphException : exception {
-    string msg;
+struct GraphException : std::exception {
+    std::string msg;
 
-    explicit GraphException(const string &msg);
+    explicit GraphException(const std::string &msg);
 
     const char *what() const noexcept;
 };
 
 
-string NodeErrorMsg(Coord p);
+std::string NodeErrorMsg(Coord p);
 
 #endif //CPP_PLANNER_GRAPHCOMPONENTS_H

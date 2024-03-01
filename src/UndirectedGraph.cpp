@@ -2,7 +2,7 @@
 // Created by sacha on 18/02/24.
 //
 
-#include "../include/UndirectedGraph.h"
+#include "UndirectedGraph.h"
 
 void UndirectedGraph::addEdge(Coord p1, Coord p2, double cost) {
     if (!hasNode(p1))

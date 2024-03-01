@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <cmath>
-#include "../include/GridGraph.h"
+#include "GridGraph.h"
 
 GridGraph::GridGraph() : width(0), height(0), eightWay(false) {
 
@@ -25,7 +25,7 @@ void GridGraph::createNodes() {
 void GridGraph::createEdges() {
     for(const auto& [nodeFrom, _]: *this) {
         int x = nodeFrom.x, y = nodeFrom.y;
-        vector<Edge> coords;
+        std::vector<Edge> coords;
         coords.push_back(Edge {x + 1, y, 1.}); // North
         coords.push_back(Edge {x, y + 1, 1.}); // East
         coords.push_back(Edge {x - 1, y, 1.}); // South

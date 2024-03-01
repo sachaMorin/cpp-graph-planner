@@ -1,9 +1,10 @@
 //
 // Created by sacha on 27/02/24.
 //
-#include <stdio.h>
-#include "include/OccupancyGraph.h"
+#include <cstdio>
+#include "OccupancyGraph.h"
 
+using namespace std;
 using namespace cv;
 
 

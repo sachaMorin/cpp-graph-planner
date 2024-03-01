@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "include/GridGraph.h"
+#include "GridGraph.h"
 
 using namespace std;
 

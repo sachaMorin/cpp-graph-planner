@@ -2,10 +2,10 @@
 // Created by sacha on 28/02/24.
 //
 
-#include "opencv2/opencv.hpp"
+#include <opencv2/opencv.hpp>
 #include "OccupancyGraph.h"
-#include "GraphComponents.h"
 
+using namespace std;
 using namespace cv;
 
 OccupancyGraph::OccupancyGraph(const string &path, const bool eightWayConn) : map(loadMap(path))  {

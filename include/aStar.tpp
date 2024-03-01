@@ -6,7 +6,6 @@
 // See https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
 
 #include <queue>
-#include "DirectedGraph.h"
 
 template<typename Callable>
 GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
@@ -32,7 +31,7 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
 
     // Set up min priority queue comparing Node fScores
     auto cmp = [] (const Node* left, const Node* right) {return left->fScore > right->fScore;};
-    priority_queue<Node*, vector<Node*>, decltype(cmp)> openSet;
+    std::priority_queue<Node*, std::vector<Node*>, decltype(cmp)> openSet;
 
     openSet.push(&startNode);
     startNode.inQueue = true;

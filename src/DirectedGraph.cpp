@@ -2,11 +2,11 @@
 // Created by sacha on 16/02/24.
 //
 
-#include "string"
-#include "cmath"
+#include <string>
+#include <cmath>
 #include <list>
 #include <functional>
-#include "../include/DirectedGraph.h"
+#include "DirectedGraph.h"
 
 using namespace std;
 

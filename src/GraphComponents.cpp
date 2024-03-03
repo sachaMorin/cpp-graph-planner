@@ -7,11 +7,7 @@
 
 using namespace std;
 
-ostream &Coord::operator<<(ostream &out) const {
-    return out << Coord::to_string();
-}
-
-string Coord::to_string() const {
+string Coord::toString() const {
     return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
 }
 
@@ -66,5 +62,5 @@ const char *GraphException::what() const noexcept {
 }
 
 string NodeErrorMsg(Coord p) {
-    return "Trying to add edge connecting node " + p.to_string() + ", which does not exist";
+    return "Trying to add edge connecting node " + p.toString() + ", which does not exist";
 }

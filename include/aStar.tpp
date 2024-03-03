@@ -13,9 +13,9 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
     // Nodes store their own previous pointer, fScore, gScore and inQueue values
     // and are accessible in nodeMap
     if (!hasNode(start))
-        throw GraphException("Start node " + start.to_string() + " is not in the graph.");
+        throw GraphException("Start node " + start.toString() + " is not in the graph.");
     if (!hasNode(goal))
-        throw GraphException("Goal node " + goal.to_string() + " is not in the graph.");
+        throw GraphException("Goal node " + goal.toString() + " is not in the graph.");
 
     resetAStarFields();
 

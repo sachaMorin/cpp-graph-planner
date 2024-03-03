@@ -17,9 +17,7 @@ struct Coord {
     int x;
     int y;
 
-    std::ostream &operator<<(std::ostream &out) const;
-
-    std::string to_string() const;
+    std::string toString() const;
 };
 
 bool operator<(Coord a, Coord b);

@@ -12,7 +12,7 @@ using namespace std;
 
 void DirectedGraph::addNode(Coord p) {
     if (hasNode(p))
-        throw GraphException("Node with coordinates " + p.to_string() + " already exists");
+        throw GraphException("Node with coordinates " + p.toString() + " already exists");
 
     nodeMap[p] = Node(p);
 }
@@ -71,7 +71,7 @@ size_t DirectedGraph::nEdges() const {
 
 void DirectedGraph::printNodesDegrees() const {
     for (auto const &[coord, node]: *this)
-        cout << coord.to_string() << ": " << node.degreeOut() << "\n";
+        cout << coord.toString() << ": " << node.degreeOut() << "\n";
 }
 
 GraphPath DirectedGraph::aStar(Coord start, Coord goal, heuristic heuristic) {

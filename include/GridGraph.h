@@ -10,8 +10,8 @@
 
 class GridGraph: public UndirectedGraph {
 public:
-    GridGraph();
     GridGraph(int width, int height, bool eightWayConn = false);
+    void buildGraph();
 protected:
     int width;
     int height;

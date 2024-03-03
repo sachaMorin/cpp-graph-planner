@@ -8,14 +8,10 @@
 using namespace std;
 using namespace cv;
 
-OccupancyGraph::OccupancyGraph(const string &path, const bool eightWayConn) : map(loadMap(path))  {
+OccupancyGraph::OccupancyGraph(const string &path, const bool eightWayConn) : map(loadMap(path)), GridGraph(0, 0, eightWayConn)  {
+    // Use 0s as placeholders and replace with actual map dimensions
     width = map.rows;
     height = map.cols;
-    eightWay = eightWayConn;
-
-
-    createNodes();
-    createEdges();
 }
 
 void OccupancyGraph::createNodes() {
@@ -48,7 +44,7 @@ void OccupancyGraph::saveImage(const string &filename) {
 
 
     imwrite(filename, rgbImage);
-    cout << "Image saved as " << filename << endl;
+    cout << "Image saved as " << filename << "\n\n";
 }
 
 cv::Mat OccupancyGraph::loadMap(const string& path) {

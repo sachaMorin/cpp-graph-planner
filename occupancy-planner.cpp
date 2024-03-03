@@ -26,7 +26,10 @@ int main(int argc, char** argv )
     int yGoal = stoi(argv[6]);
 
     OccupancyGraph graph = OccupancyGraph (argv[1], true);
+    cout << "Building graph..." << "\n";
+    graph.buildGraph();
 
+    cout << "Running search with 3 heuristics..." << "\n\n";
     // Dijkstra (no heuristic)
     auto pathDijkstra = graph.aStar(xStart, yStart, xGoal, yGoal, NONE);
     cout << "Dijkstra Cost         : "  <<  pathDijkstra.cost  << "\n";

@@ -6,11 +6,10 @@
 #include <cmath>
 #include "GridGraph.h"
 
-GridGraph::GridGraph() : width(0), height(0), eightWay(false) {
-
+GridGraph::GridGraph(int width, int height, bool eightWayConn) : width(width), height(height), eightWay(eightWayConn) {
 }
 
-GridGraph::GridGraph(int width, int height, bool eightWayConn) : width(width), height(height), eightWay(eightWayConn) {
+void GridGraph::buildGraph() {
     createNodes();
     createEdges();
 }

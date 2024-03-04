@@ -17,8 +17,8 @@ add_library(Graph
         include/OccupancyGraph.h)
 
 
-add_executable(cpp-planner line-graph.cpp)
-target_link_libraries(cpp-planner Graph)
+add_executable(line-graph line-graph.cpp)
+target_link_libraries(line-graph Graph)
 
 add_executable(default-maps default-maps.cpp)
 target_link_libraries(default-maps ${OpenCV_LIBS} )

@@ -10,6 +10,7 @@
 #include "GridGraph.h"
 
 
+// Build a graph from an occupancy map in a pgm file
 class OccupancyGraph : public GridGraph {
 public:
     explicit OccupancyGraph(const std::string &path, bool eightWayConn = true);

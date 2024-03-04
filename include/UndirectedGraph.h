@@ -13,7 +13,7 @@ public:
     using DirectedGraph::addEdge; // Pull overloads from DirectedGraph
     void addEdge(Coord p1, Coord p2, double cost) override;
 
-    size_t nEdges() const override;
+    [[nodiscard]] size_t nEdges() const override;
 };
 
 

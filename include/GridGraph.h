@@ -8,6 +8,7 @@
 #include "UndirectedGraph.h"
 
 
+// Dense 2D grid with 8-way or 4-way connectivity
 class GridGraph: public UndirectedGraph {
 public:
     GridGraph(int width, int height, bool eightWayConn = false);

@@ -21,14 +21,6 @@ void DirectedGraph::addNode(int x, int y) {
     addNode(Coord{x, y});
 }
 
-bool DirectedGraph::hasNode(Coord p) const {
-    return nodeMap.count(p) > 0;
-}
-
-bool DirectedGraph::hasNode(int x, int y) const {
-    return hasNode(Coord{x, y});
-}
-
 void DirectedGraph::addEdge(Coord p1, Coord p2, double cost) {
     if (!hasNode(p1))
         throw GraphException(NodeErrorMsg(p1));
@@ -49,7 +41,15 @@ void DirectedGraph::addEdge(int x1, int y1, int x2, int y2) {
     addEdge(Coord{x1, y1}, Coord{x2, y2}, 1.);
 }
 
-size_t DirectedGraph::size() {
+bool DirectedGraph::hasNode(Coord p) const {
+    return nodeMap.count(p) > 0;
+}
+
+bool DirectedGraph::hasNode(int x, int y) const {
+    return hasNode(Coord{x, y});
+}
+
+size_t DirectedGraph::size() const {
     return nodeMap.size();
 }
 
@@ -145,7 +145,7 @@ GraphPath DirectedGraph::reconstructPath(Node& goal) {
     list<Coord> path;
     Node* currentNode = &goal;
 
-    // Only start has gScore 0
+    // Start will have a previous nullptr
     while (currentNode != nullptr) {
         path.push_back(currentNode->coord);
         currentNode = currentNode->previous;

@@ -17,7 +17,7 @@ struct Coord {
     int x;
     int y;
 
-    std::string toString() const;
+    [[nodiscard]] std::string toString() const;
 };
 
 bool operator<(Coord a, Coord b);
@@ -31,6 +31,7 @@ struct Edge {
 bool operator<(Edge a, Edge b);
 
 // Graph Node
+// Nodes are essentially a set of outbound edges
 class Node {
 public:
     Coord coord;
@@ -43,17 +44,18 @@ public:
 
     void addOutEdge(Edge e);
 
-    size_t degreeOut() const;
+    [[nodiscard]] size_t degreeOut() const;
 
+    // Iterators
     std::set<Edge>::iterator begin();
 
     std::set<Edge>::iterator end();
 
-    std::set<Edge>::const_iterator begin() const;
+    [[nodiscard]] std::set<Edge>::const_iterator begin() const;
 
-    std::set<Edge>::const_iterator end() const;
+    [[nodiscard]] std::set<Edge>::const_iterator end() const;
 
-    // Useful data members for A*
+    // A* Data Members
     Node* previous = nullptr;
     double fScore = std::numeric_limits<double>::infinity();
     double gScore = std::numeric_limits<double>::infinity();
@@ -63,11 +65,13 @@ private:
     std::set<Edge> outEdges{};
 };
 
+// Graph Path returned by A*
 struct GraphPath {
     std::vector<Coord> path {};
     double cost {0.};
 };
 
+// A* Heuristics
 enum heuristic {
     NONE,
     TAXICAB,
@@ -75,7 +79,7 @@ enum heuristic {
 };
 
 
-// Error handling
+// Error Handling
 struct GraphException : std::exception {
     std::string msg;
 

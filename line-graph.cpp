@@ -9,7 +9,7 @@ int main() {
     // Build Directed Line Graph on a Diagonal
     cout << "DIRECTED Line Graph" << "\n";
     DirectedGraph dg = DirectedGraph();
-    for(int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
         dg.addNode(i, i);
         if (i > 0)
             dg.addEdge(i - 1, i - 1, i, i);
@@ -26,7 +26,7 @@ int main() {
     // Build Undirected Line Graph on a Diagonal
     cout << "\n" << "UNDIRECTED Line Graph" << "\n";
     UndirectedGraph ug = UndirectedGraph();
-    for(int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
         ug.addNode(i, i);
         if (i > 0)
             ug.addEdge(i - 1, i - 1, i, i);
@@ -38,9 +38,8 @@ int main() {
     ug.printNodesDegrees();
     auto undirectedPath = ug.aStar(4, 4, 0, 0, NONE);
     cout << "Path from (4, 4) to (0, 0):" << "\n";
-    for (const auto& coord : undirectedPath.path)
+    for (const auto &coord: undirectedPath.path)
         cout << coord.toString() << "\n";
-
 
 
     return 0;

@@ -76,21 +76,21 @@ void DirectedGraph::printNodesDegrees() const {
 
 GraphPath DirectedGraph::aStar(Coord start, Coord goal, heuristic heuristic) {
     std::function<double(Coord, Coord)> h;
-    switch(heuristic) {
+    switch (heuristic) {
         case NONE: {
-            h = [] (Coord c1, Coord c2) {
+            h = [](Coord c1, Coord c2) {
                 return 0.0;
             };
             break;
         }
         case TAXICAB: {
-            h = [] (Coord c1, Coord c2) {
+            h = [](Coord c1, Coord c2) {
                 return abs(c1.x - c2.x) + abs(c1.y - c2.y);
             };
             break;
         }
         case EUCLIDEAN: {
-            h = [] (Coord c1, Coord c2) {
+            h = [](Coord c1, Coord c2) {
                 return sqrt(pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2));
             };
             break;
@@ -103,7 +103,7 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal, heuristic heuristic) {
 }
 
 GraphPath DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal, heuristic heuristic) {
-    return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal}, heuristic);
+    return aStar(Coord{xStart, yStart}, Coord{xGoal, yGoal}, heuristic);
 }
 
 GraphPath DirectedGraph::aStar(Coord start, Coord goal) {
@@ -111,7 +111,7 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal) {
 }
 
 GraphPath DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal) {
-    return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal});
+    return aStar(Coord{xStart, yStart}, Coord{xGoal, yGoal});
 }
 
 map<Coord, Node>::iterator DirectedGraph::begin() {
@@ -130,8 +130,8 @@ map<Coord, Node>::const_iterator DirectedGraph::end() const {
     return nodeMap.cend();
 }
 
-void DirectedGraph::resetAStarFields()  {
-    for(auto& [_, node]: *this) {
+void DirectedGraph::resetAStarFields() {
+    for (auto &[_, node]: *this) {
         node.previous = nullptr;
         node.fScore = numeric_limits<double>::infinity();
         node.gScore = numeric_limits<double>::infinity();
@@ -140,10 +140,10 @@ void DirectedGraph::resetAStarFields()  {
     aStarPath = {};
 }
 
-GraphPath DirectedGraph::reconstructPath(Node& goal) {
+GraphPath DirectedGraph::reconstructPath(Node &goal) {
     // Reconstruct path
     list<Coord> path;
-    Node* currentNode = &goal;
+    Node *currentNode = &goal;
 
     // Start will have a previous nullptr
     while (currentNode != nullptr) {
@@ -152,7 +152,7 @@ GraphPath DirectedGraph::reconstructPath(Node& goal) {
     }
     path.reverse();
 
-    GraphPath result {{path.begin(), path.end()}, goal.gScore};
+    GraphPath result{{path.begin(), path.end()}, goal.gScore};
 
     return result;
 }

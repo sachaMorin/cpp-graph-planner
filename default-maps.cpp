@@ -4,10 +4,8 @@
 // Build default map with a middle square obstacle
 #include <opencv2/opencv.hpp>
 
-int main(int argc, char** argv )
-{
-    if ( argc != 2 )
-    {
+int main(int argc, char **argv) {
+    if (argc != 2) {
         printf("usage: ./default-maps <OUTPUT DIR> >\n");
         return -1;
     }

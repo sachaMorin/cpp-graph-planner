@@ -24,7 +24,7 @@ bool operator<(Coord a, Coord b);
 
 // Graph Edge
 struct Edge {
-    Coord to {0, 0};
+    Coord to{0, 0};
     double cost = 1.;
 };
 
@@ -56,7 +56,7 @@ public:
     [[nodiscard]] std::set<Edge>::const_iterator end() const;
 
     // A* Data Members
-    Node* previous = nullptr;
+    Node *previous = nullptr;
     double fScore = std::numeric_limits<double>::infinity();
     double gScore = std::numeric_limits<double>::infinity();
     bool inQueue = false;
@@ -67,8 +67,8 @@ private:
 
 // Graph Path returned by A*
 struct GraphPath {
-    std::vector<Coord> path {};
-    double cost {0.};
+    std::vector<Coord> path{};
+    double cost{0.};
 };
 
 // A* Heuristics

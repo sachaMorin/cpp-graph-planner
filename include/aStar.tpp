@@ -19,8 +19,8 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
 
     resetAStarFields();
 
-    Node& startNode = nodeMap[start];
-    Node& goalNode = nodeMap[goal];
+    Node &startNode = nodeMap[start];
+    Node &goalNode = nodeMap[goal];
 
     // For node n, gScore[n] is the cost of the cheapest path from start to n currently known
     startNode.gScore = 0.0;
@@ -30,15 +30,15 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
     startNode.fScore = heuristic(startNode.coord, goalNode.coord);
 
     // Set up min priority queue comparing Node fScores
-    auto cmp = [] (const Node* left, const Node* right) {return left->fScore > right->fScore;};
-    std::priority_queue<Node*, std::vector<Node*>, decltype(cmp)> openSet;
+    auto cmp = [](const Node *left, const Node *right) { return left->fScore > right->fScore; };
+    std::priority_queue<Node *, std::vector<Node *>, decltype(cmp)> openSet;
 
     openSet.push(&startNode);
     startNode.inQueue = true;
 
 
-    while(!openSet.empty()) {
-        Node* minNode = openSet.top();
+    while (!openSet.empty()) {
+        Node *minNode = openSet.top();
         if (minNode == &goalNode) {
             aStarPath = reconstructPath(goalNode);
             auto result = aStarPath;
@@ -48,8 +48,8 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
         openSet.pop();
         minNode->inQueue = false;
 
-        for (const Edge outEdge : *minNode) {
-            Node& neighbor = nodeMap[outEdge.to];
+        for (const Edge outEdge: *minNode) {
+            Node &neighbor = nodeMap[outEdge.to];
             double tentativeGScore = minNode->gScore + outEdge.cost;
             if (tentativeGScore < neighbor.gScore) {
                 neighbor.previous = minNode;
@@ -69,5 +69,5 @@ GraphPath DirectedGraph::aStar(Coord start, Coord goal, Callable heuristic) {
 
 template<typename Callable>
 GraphPath DirectedGraph::aStar(int xStart, int yStart, int xGoal, int yGoal, Callable heuristic) {
-    return aStar(Coord {xStart, yStart}, Coord {xGoal, yGoal}, heuristic);
+    return aStar(Coord{xStart, yStart}, Coord{xGoal, yGoal}, heuristic);
 }

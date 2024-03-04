@@ -8,7 +8,8 @@
 using namespace std;
 using namespace cv;
 
-OccupancyGraph::OccupancyGraph(const string &path, const bool eightWayConn) : map(loadMap(path)), GridGraph(0, 0, eightWayConn)  {
+OccupancyGraph::OccupancyGraph(const string &path, const bool eightWayConn) : map(loadMap(path)),
+                                                                              GridGraph(0, 0, eightWayConn) {
     // Use 0s as placeholders and replace with actual map dimensions
     width = map.rows;
     height = map.cols;
@@ -16,10 +17,10 @@ OccupancyGraph::OccupancyGraph(const string &path, const bool eightWayConn) : ma
 
 void OccupancyGraph::createNodes() {
     // Only add nodes for free space
-    for(int i=0; i < width; i++)
-        for(int j=0; j < height; j++) {
+    for (int i = 0; i < width; i++)
+        for (int j = 0; j < height; j++) {
             auto pixelValue = static_cast<double> (map.at<uchar>(i, j));
-            double occ = 1 - pixelValue/255;
+            double occ = 1 - pixelValue / 255;
             if (occ < .01)
                 this->addNode(i, j);
         }
@@ -34,12 +35,12 @@ void OccupancyGraph::saveImage(const string &filename) {
 
 
     // Visited
-    for (const auto& [coord, node]: *this)
+    for (const auto &[coord, node]: *this)
         if (node.fScore < numeric_limits<double>::infinity())
             rgbImage.at<Vec3b>(coord.x, coord.y) = Vec3b(238, 238, 175);
 
     // Path
-    for (const auto& coord: aStarPath.path)
+    for (const auto &coord: aStarPath.path)
         rgbImage.at<Vec3b>(coord.x, coord.y) = Vec3b(0, 0, 255);
 
 
@@ -47,9 +48,9 @@ void OccupancyGraph::saveImage(const string &filename) {
     cout << "Image saved as " << filename << "\n\n";
 }
 
-cv::Mat OccupancyGraph::loadMap(const string& path) {
-    Mat currentMap =  imread(path, IMREAD_UNCHANGED);
-    if(!currentMap.data)
+cv::Mat OccupancyGraph::loadMap(const string &path) {
+    Mat currentMap = imread(path, IMREAD_UNCHANGED);
+    if (!currentMap.data)
         throw GraphException("Map is empty! Is this the right path?");
 
     return currentMap;

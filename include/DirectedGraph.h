@@ -65,9 +65,9 @@ public:
 protected:
     std::map<Coord, Node> nodeMap;
 
-    GraphPath aStarPath {}; // Cache path when we call aStar
+    GraphPath aStarPath{}; // Cache path when we call aStar
 
-    static GraphPath reconstructPath(Node& goal) ;
+    static GraphPath reconstructPath(Node &goal);
 
 private:
     void resetAStarFields();

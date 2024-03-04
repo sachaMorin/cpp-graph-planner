@@ -9,16 +9,19 @@
 
 
 // Dense 2D grid with 8-way or 4-way connectivity
-class GridGraph: public UndirectedGraph {
+class GridGraph : public UndirectedGraph {
 public:
     GridGraph(int width, int height, bool eightWayConn = false);
+
     void buildGraph();
+
 protected:
     int width;
     int height;
     bool eightWay;
 
     virtual void createNodes();
+
     void createEdges();
 };
 

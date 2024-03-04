@@ -1,10 +1,10 @@
 # cpp-graph-planner
 
-Small project to learn C++ after reading [A Tour of C++](https://www.stroustrup.com/tour2.html). The library allows to build 
+Small project to review C++ after reading [A Tour of C++](https://www.stroustrup.com/tour2.html). The library allows to build 
 directed and undirected graphs. Nodes are indexed with `(x, y)` coordinates on a 2D grid. Graphs support pathfinding with
 A* based on the [Wikipedia pseudocode](https://en.wikipedia.org/wiki/A*_search_algorithm).
 
-Moreover, the `OccupancyGraph` class uses to the above tools to build graphs directly from `pgm` files representing occupancy maps.
+The `OccupancyGraph` class uses to the above tools to build graphs directly from `pgm` files representing occupancy maps.
 
 ![](./images/map_euclidean.png)
 
@@ -30,7 +30,7 @@ The map should be encoded as a `pgm` file. You can generate simple maps with
 mkdir maps
 ./default-maps maps
 ```
-then solve the path between `(1, 1)` and `(99, 99)` in the empty map with
+then solve the path between `(1, 1)` and `(99, 99)` in an empty map with
 ```bash
 ./occupancy-planner maps/map_empty.pgm maps 1 1 99 99
 ```
